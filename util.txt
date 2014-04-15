@@ -1,0 +1,631 @@
+##########################
+# show identation in VIM #
+##########################
+
+match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
+
+
+########################
+# create symbolic link #
+########################
+
+sudo ln -s PATH/"file" /usr/bin/"file"
+
+
+###################################
+# check redirects with user agent #
+###################################
+
+curl -A nokia6310 -i -v "url"
+
+
+###################################
+# DNS configuration files / stuff #
+###################################
+
+/etc/hosts
+/etc/resolv.conf
+/etc/network/interfaces
+nslookup "address"
+dig "address"
+
+#CNAME - canonical name#
+#DNAME - sub domains#
+
+
+#####################
+# variable settings #
+#####################
+
+~/.bashrc
+/etc/environment
+
+
+###################
+# adding manifest #
+###################
+
+jar cfe jar mainclass
+jar cvmf "jarfile" manifest.mf "classfile"
+jar xvf "jarfile"
+
+
+##################
+# java arguments #
+##################
+
+java -jar "jarfile" "args"
+
+
+#####################################
+# check tar file without extracting #
+#####################################
+
+tar -tvf "tarfile"
+
+
+#####################################
+# check jar file without extracting #
+#####################################
+
+jar tf "jarfile"
+
+
+##############################
+# user permissions to folder #
+##############################
+
+sudo chown -R user:user "folder"
+
+
+####################
+# user permissions #
+####################
+
+#give execute permission to all users#
+sudo chmod a+x "location/file"
+
+#give read, write and execute permission to user#
+sudo chmod u+r,u+w,u+x "location/file"
+
+#user permission/ownership of folder#
+sudo chown -R user:user "folder"
+
+
+#######
+# git #
+#######
+
+git status
+
+git branch -a
+
+git clone "repository_location"
+
+git clone --mirror "repository_location"
+
+#don't use git pull, use fetch and merge instead#
+git fetch && git merge "origin branch"
+
+git config --global core.excludesfile ~/.gitglobalexclude (file created with exclusions at home folder)
+
+git config --global core.editor "vim_location"
+
+git commit
+
+git push
+
+
+#This will create the new branch and check it out#
+git checkout -b "new_branch_name" a9c146a09505837ec03b
+
+#This creates the branch without checking it out#
+git branch "new_branch_name" a9c146a09505837ec03b
+
+#switch branches#
+git checkout "branch_name"
+
+#switch branches and ignore uncommitted changes#
+git checkout -f "branch_name"
+
+#switch to specific checksum#
+git checkout e646016075dd3d1bbbdd26c75757cce466ea1189
+
+#switch to a different branch, saving the changes from the current one your working on#
+git stash save
+git checkout branch
+#do something in the branch#
+git checkout oldbranch
+git stash pop
+
+#remove stash#
+git stash drop
+
+#push local branch to central repository#
+git push -u origin "local branch"
+git push <remote> <local branch name>:<remote branch to push into> (ex: git push -u origin "local branch":"remo branch")
+
+#add a new repo to a remote server#
+git init
+git remote add origin brunov@peso:/opt/gitrepos/OpxGateway.git
+git push -u origin master:master
+
+
+#check differences for changes#
+git difftool peso/mw_jsred-alias-fix
+
+#check differences between branches#
+git diff something branch
+
+
+#Merging a change branch#
+branch master to master-temp 
+checkout master-temp
+git merge your change_branch 
+
+git branch -D master-temp (and do the merge for real)
+
+#Overwritting your local master branch#
+git fetch --all
+git reset --hard origin/master
+
+#Removing REMOTE branch#
+git push origin :branch
+
+#Git adding a new naming convention to remote github repository#
+git remote add github git@github.com:brunoriscado/repo.git
+
+#Tagging simple#
+git tag tag-name
+
+#Tagging annotated#
+git tag -a tag-name -m 'tag description'
+
+#Tagging a specific commit/checksum#
+git tag tag-name checksum
+
+#Logging GIT push/commit#
+git log --pretty=oneline
+
+#See URLs for remotes shortnames#
+git remotes -v
+
+###############
+# Jetty Start #
+###############
+
+java -jar start.jar jetty.port=8085
+java -jar start.jar -DSTOP.PORT=8881 -DSTOP.key=magic --daemon &
+
+
+##############
+# Jetty Stop #
+##############
+
+java -jar start.jar -DSTOP.PORT=8881 -DSTOP.key=magic --stop
+
+
+############################
+# Make a python executable #
+############################
+
+#Include this in the file#
+#!/usr/bin/env python
+
+
+############################
+# Make a groovy executable #
+############################
+
+#Include this in the file#
+#!/usr/bin/env groovy
+
+
+#############################
+# Mysql database connection #
+#############################
+
+mysql -u "username" -ppassword -h "host" -D 'database'
+
+##############
+# Mysql Dump #
+##############
+
+#table dump#
+mysqldump -u... -p... mydb t1 t2 t3 > mydb_tables.sql
+
+#with compression#
+mysqldump -u [uname] -p[pass] [dbname] | gzip -9 > [backupfile.sql.gz]
+
+
+###################################
+# Running Android app from prompt #
+###################################
+
+#Include this in the file#
+#!/bin/sh
+
+/usr/bin/java -jar -Xmx2g /opt/burp/burpsuite_free_v1.5.jar & /opt/android-sdk-linux/tools/emulator -avd AVD_for_Nexus_S_by_Google -http-proxy localhost:8081 -debug-proxy &
+
+
+####################################
+# Searching content in website DOM #
+####################################
+
+wget -q -r -O- http://www.website.com | egrep -i "(bad|words|here)"
+
+
+######################################################
+# Using a php function from the prompt (for testing) #
+######################################################
+
+php -r 'include "URLUtils.php"; URLUtils::ping("url");'
+
+
+##################
+# Kernel Version #
+##################
+
+uname -r
+
+
+###################
+# Listing Kernels #
+###################
+
+sudo dpkg --list 'linux-image*'
+
+
+########################
+# Removing old Kernels #
+########################
+
+sudo apt-get remove linux-image-2.6.31-15-generic
+
+
+############################
+# Updating to a new Kernel #
+############################
+
+mkdir kernel v3.3.1-precise && cd kernel v3.3.1-precise
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.3.1-precise/linux-headers-3.3.1-030301-generic_3.3.1-030301.201204021435_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.3.1-precise/linux-headers-3.3.1-030301_3.3.1-030301.201204021435_all.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v3.3.1-precise/linux-image-3.3.1-030301-generic_3.3.1-030301.201204021435_amd64.deb
+sudo dpkg -i linux-*.deb 
+sudo update-grub 
+
+
+########################
+# Format JSON response #
+########################
+
+"request" | python -mjson.tool
+
+
+##############################
+# START TOMCAT IN DEBUG MODE #
+##############################
+
+#set jpda port#
+export JPDA_ADDRESS=8000
+export JPDA_TRANSPORT=dt_socket
+
+#start tomcat#
+./catalina.sh jpda start
+
+
+########
+# Logs #
+########
+
+less -i MG_351*.log.2012-03-23 | grep "\<MO_RECEIVED\>.*\<LEAO\>" -i
+
+less -i MG_3519*8919.log.2012-03-23 | grep 'PEPSI' -i | grep 'SMS Receiver START' -a5
+
+
+############################
+# looking for java threads #
+############################
+
+ ps -fe | grep java | grep --color 8787
+
+
+#############################
+# thread kill / Thread dump #
+############################# 
+ 
+ kill -quit <pid>
+
+
+##################
+# TCP dump write #
+##################
+
+sudo  /usr/sbin/tcpdump -s 0 -w /home/dev/azerfon.pcap -vnetttti eth0 host 77.244.112.29 and port 3205
+
+sudo /usr/sbin/tcpdump  -s 1500 -w rbt_test.pcap host 77.244.112.29
+
+
+#################
+# TCP dump read #
+#################
+
+sudo /usr/sbin/tcpdump  -r rbt_test.pcap
+
+
+###############################################################
+# LISTENING TO TCP and doing DUMP (abrir o dump no wireshark) #
+###############################################################
+
+sudo  /usr/sbin/tcpdump -s 0 -w $(pwd)/dump.pcap -vnetttti eth0 host 203.82.66.118
+
+
+##############################
+# WGET and CURL for requests #
+##############################
+
+#WGET with body xml#
+wget http://10.220.10.149:9040/goldennet.aspx --post-file=bakcell_test.xml
+
+#Curl with xml#
+curl -i -X POST 10.220.17.6:9030/goldennet.aspx -H "Content-Type: text/xml" --data-binary "<?xml version="1.0"?><protocolRequest><messageType>01</messageType><messageCode>001</messageCode><messageParameters><param name="SubscriberNumber" value="994551234567"/><param name="Comment" value="Top-UP 10%"/><param name="Amount" value="1.00"/><param name="TransactionID" value="123456789012"/><param name="DateTime" value="20121008 10:20:30"/></messageParameters></protocolRequest>"
+curl -k -H "Content-Type: text/xml"  -d "@pedido-subscr.xml" https://sdp.kktcell.com/slcm/TPRegistration
+
+#Curl with JSON#
+curl -i -X POST lx-emea-b2b-web-03:8081/webapp-emea-front-service/eurosport-receive-data/ -H "Content-Type: application/json" --data-binary "{"type": "match","id": 1234567,"date": 2012-09-01T20:30:00+02:00,"sport": {"id": 22,"name": "FOOTBALL"},"status": "starting","hometeam": {"id": 548,"name": "FC Barcelone","score": 0},"awayteam": {"id": 24,"name": "Valence","score": 0}}"
+
+
+#################
+# Find in linux #
+#################
+
+#find linux#
+find . -name "nome_do_ficheiro"
+
+#find linux ignore case#
+find . -iname "nome_do_ficheiro"
+
+
+################################
+# JBoss bootstrap server start #
+################################
+
+./run.sh -c "bootstrap name"
+
+
+############################
+# Checking directory space #
+############################
+
+du -sh [directory]
+
+du -h [directory] | sort -rn
+
+###########
+# CRONTAB #
+###########
+
+crontab -l
+
+
+######################################################
+# Soap services - Generating STUBS (wsimport/jax-ws) #
+######################################################
+
+wsimport -p com.uptimeservice.ws -d build/classes -s src wsdl/test.wsdl
+
+wsimport -p com.slcm.services.slcmexternalsubscriptionservice -s /home/dev/temp/ SlcmExternalSubscriptionService.wsdl -Xnocompile -Xendorsed -extension -B-XautoNameResolution -Xdebug -verbose
+
+wsimport -s [src_path] -p [base_package] -Xnocompile [WSDL] -Xendorsed -extension -B-XautoNameResolution
+
+
+##############
+# GREPS/LOGS #
+##############
+
+#counting entries#
+less -i MG_244*log.2012-04-09 | grep 'MtQ END' | grep -c 'SID: 11024'
+
+#Exclude from search#
+less -i MG_244*log.2012-04-09 | grep 'MtQ END' | grep 'SID: 11024' | egrep -v -c 'PURPOSE: 217'
+less -i MG_244*log.2012-04-09 | grep 'MtQ END' | grep 'SID: 11024' | egrep -v 'PURPOSE: 217' | egrep -v 'PURPOSE: 216' | egrep -c -v 'RES: false'
+
+#Count unique entries for each line#
+less MG_244000*.log.2012-07-12 | egrep "LA: 44567.*RES: true" | sed "s/:.*//" | sort | uniq -c
+
+
+###################
+# Grep an IP List #
+###################
+
+less iplist.txt | grep -oP "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+
+
+######################################################################
+# Regular expression include set of keywords and exclude another set #
+######################################################################
+
+^(?i:(?!.*(exlude1|exclude2))).*(include1|include2).*)$
+^(?i:(?!.*opera mini).*((safari|(mobile).*(safari))).*)$
+
+#######################
+# Check file encoding #
+#######################
+
+file --mime myfile.txt
+
+
+#################
+# SSH Tunneling #
+#################
+
+ssh -L PORT_LOCAL:localhost:3306  USER@MYSQL_SERVER
+depois ligas o teu cliente local ao PORT_LOCAL
+3306 é a default port to mysql
+Se estiver à escuta noutra port. tens que mudar
+
+
+###################################
+# get lines from x to y on a file #
+###################################
+
+sed -n 'x,yp' file
+
+###############
+# sed replace #
+###############
+
+sed "s/^.*\?\(%3Frcid\|?rcid\|&rcid\|%26rcid\)=//g"
+
+################
+# Start apache #
+################
+
+sudo apachectl start
+
+#######################
+# Follow crontab logs #
+#######################
+
+tail -f | grep CRON /var/log/syslog
+
+####################
+# SSH config hosts #
+####################
+
+/etc/ssh/ssh_config
+
+example:
+
+Host opxgateway
+Hostname 50.16.235.181
+User ubuntu
+IdentityFile ~/.ec2/mobafill-key.pem
+UserKnownHostsFile /dev/null
+StrictHostKeyChecking no
+
+
+######################
+# Creating a SSH Key #
+######################
+
+ssh-keygen -t rsa -C "your_email@example.com"
+ssh-add ~/.ssh/id_rsa
+
+#Testing#
+ssh -T git@github.com
+
+#############################
+# IP:port being listened at #
+#############################
+
+netstat -an | grep LISTEN | grep tcp
+
+
+#########
+# Rsync #
+#########
+
+#regular usage#
+rsync -aOvz --chmod=g+w,Da+rX,Fa+r,F-X --exclude .svn . \ ${rsync.user}@${rsync.server}:${rsync.dir}" />
+
+#using pem file#
+rsync -e “ssh -i myPemKey.pem” --chmod=u=rwx,g=rwx,o=rwx –progress -azC --exclude-from=exclude.txt . user@xxx.xxx.xxx.xx:/home/user/public_html/site
+
+rsync -e 'ssh -i /home/brunov/.ec2/ec2-keypair.pem' --chmod=u=rwx,g=rwx,o=rwx --progress -azC . ubuntu@23.23.182.62:/web/live/opxgateway
+
+#####################
+# SCP using pem key #
+#####################
+
+ssh -i .ec2/ec2-keypair.pem ubuntu@23.23.182.62
+scp -r -i .ec2/ec2-keypair.pem /var/www/test.html ubuntu@523.23.182.62:/var/www
+
+
+#################
+# netstat stuff #
+#################
+
+netstat -plnt
+
+
+#####################
+# Exim4 mail config #
+#####################
+
+
+#####################
+# JDK configuration #
+#####################
+
+#set jdk#
+sudo update-alternatives --config java
+
+#config javac#
+sudo update-alternatives --config javac
+
+#set javac#
+sudo update-alternatives --set javac /usr/lib/jvm/java-7-openjdk/bin/javac
+
+
+#################
+# Word counting #
+#################
+
+#counting lines#
+wc -l file
+
+
+########################################
+# creating local webserver with python #
+########################################
+
+#python 3.3#
+python -m http.server [port]
+
+#python 2.7#
+python -m SimpleHTTPServer [port]
+
+
+#########
+# Mongo #
+#########
+
+#mongo export#
+mongoexport --db iplists --collection telefonica_ip_list_20th --csv --fields ipstart,ipend --out /home/brunov/Desktop/11_12_ip_ranges.csv
+
+#mongo import#
+mongoimport --db iplists --collection telefonica_ip_list --type csv -f ip --file /home/brunov/Desktop/ips-movi.csv
+
+
+##############################
+# Run java as daemon/service #
+##############################
+
+#Redirecting standard output and errors#
+java -cp your_class_path com.domain.main_class <&- 1>/dev/null 2>&1 &
+
+#Not Redirecting outputs - shell doesn't exit#
+(Use daemonize method in your app where you close the Standard outputs, ex: System.out.close(); and System.err.close();)
+java -cp your_class_path com.domain.main_class <&- &
+
+
+###################################
+# Launch Java storing PID in file #
+###################################
+
+#bash code#
+#!/bin/sh
+java -cp your_class_path com.domain.main_class &lt;&amp;- &
+pid=$!
+echo ${pid} > mydaemon.pid
+
+#kill pid, by looking it up in the pid file##
+kill `cat mydaemon.pid`
+
+
+############################
+# Email example using MUTT #
+############################
+
+echo "This is a test email" | EMAIL=no-reply@reporo.com mutt -s "Test email" bruno.vilhena@reporo.com
