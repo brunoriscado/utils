@@ -629,3 +629,9 @@ kill `cat mydaemon.pid`
 ############################
 
 echo "This is a test email" | EMAIL=no-reply@reporo.com mutt -s "Test email" bruno.vilhena@reporo.com
+
+##########################
+# HAPROXY gentle restart #
+##########################
+
+sudo time haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)
