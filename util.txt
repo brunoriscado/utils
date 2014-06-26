@@ -190,6 +190,9 @@ git log --pretty=oneline
 #See URLs for remotes shortnames#
 git remotes -v
 
+#get hash/checksum#
+git rev-parse --verify HEAD
+
 ###############
 # Jetty Start #
 ###############
@@ -635,3 +638,20 @@ echo "This is a test email" | EMAIL=no-reply@reporo.com mutt -s "Test email" bru
 ##########################
 
 sudo time haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)
+
+####################################
+# Generate Public/Private key pair #
+####################################
+
+#will generate a 2048-bit RSA private key with all the proper encoding#
+openssl genrsa -out private.pem 2048
+
+#will generate the public key, based on the private key, generate in DER format (with .key extension), to conform to X.509 standards#
+openssl rsa -in private.pem -inform pem -out public.key -outform der -pubout
+
+#convert the private key to DER format as well, DER format is prefered by java (which doesn't work very well with PEM#
+openssl rsa -in private.pem -inform pem -out private.key -outform der
+
+#after generating private DER, the original PEM should be deleted for security reasons#
+#If you wish to convert the DER back into PEM you can do so with another command#
+openssl pkcs8 -inform der -nocrypt < private.key > private.pem
