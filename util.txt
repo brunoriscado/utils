@@ -193,6 +193,12 @@ git remotes -v
 #get hash/checksum#
 git rev-parse --verify HEAD
 
+#Rename a tag#
+git tag new old
+git tag -d old
+git push origin :refs/tags/old
+git push --tags
+
 ###############
 # Jetty Start #
 ###############
@@ -633,11 +639,13 @@ kill `cat mydaemon.pid`
 
 echo "This is a test email" | EMAIL=no-reply@reporo.com mutt -s "Test email" bruno.vilhena@reporo.com
 
+
 ##########################
 # HAPROXY gentle restart #
 ##########################
 
 sudo time haproxy -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)
+
 
 ####################################
 # Generate Public/Private key pair #
@@ -649,9 +657,38 @@ openssl genrsa -out private.pem 2048
 #will generate the public key, based on the private key, generate in DER format (with .key extension), to conform to X.509 standards#
 openssl rsa -in private.pem -inform pem -out public.key -outform der -pubout
 
-#convert the private key to DER format as well, DER format is prefered by java (which doesn't work very well with PEM#
+#convert the private key to DER format as well, DER format is prefered by java (which doesn't work very well with PEM - use second line for pkcs8#
+openssl pkcs8 -topk8 -inform pem -in rcc_private.pem -outform der -nocrypt -out rcc_private.key
 openssl rsa -in private.pem -inform pem -out private.key -outform der
 
 #after generating private DER, the original PEM should be deleted for security reasons#
 #If you wish to convert the DER back into PEM you can do so with another command#
 openssl pkcs8 -inform der -nocrypt < private.key > private.pem
+
+
+########################
+# Mongo grouping query #
+########################
+
+db.clicks_by_referer.group({key: {'affiliateid': 1 }, cond: { "referer" : /m.mobibuzz.net/ }, reduce: function( curr, result ) {result.total += 1},initial: { total : 0 }})
+
+
+##################################
+# Get linux time in milliseconds #
+##################################
+
+echo $(($(date +%s%N)/1000000))
+
+
+
+########################
+# Check open files #
+####################
+
+#for user#
+su user
+ulimit -n
+
+#open files by process#
+lsof | wc -l
+
