@@ -681,7 +681,7 @@ echo $(($(date +%s%N)/1000000))
 
 
 
-########################
+####################
 # Check open files #
 ####################
 
@@ -692,3 +692,34 @@ ulimit -n
 #open files by process#
 lsof | wc -l
 
+################################
+# setting up python Virtualenv #
+################################
+
+sudo apt-get install pip
+
+pip install virtualenv
+
+pip install virtualenvwrapper
+
+#On .bashrc or .bash_profile insert the following entries#
+export WORKON_HOME=$HOME/.virtualenvs
+source /Library/Frameworks/Python.framework/Versions/2.7/bin/virtualenvwrapper.sh
+
+# add virtualenv aliases to the .bashrc#
+alias v='workon'
+alias v.deactivate='deactivate'
+alias v.mk='mkvirtualenv --no-site-packages'
+alias v.mk_withsitepackages='mkvirtualenv'
+alias v.rm='rmvirtualenv'
+alias v.switch='workon'
+alias v.add2virtualenv='add2virtualenv'
+alias v.cdsitepackages='cdsitepackages'
+alias v.cd='cdvirtualenv'
+alias v.lssitepackages='lssitepackages'
+
+#yolk let's you get a list of libs on the virtualenv#
+pip install yolk
+
+#generate the requirements file#
+pip install -r requirements.txt
