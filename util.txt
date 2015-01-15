@@ -199,6 +199,15 @@ git tag -d old
 git push origin :refs/tags/old
 git push --tags
 
+#revert to a specific file version from a specifc commit#
+git checkout <commithash> file
+
+#leave a file out from commit changes#
+git update-index --assume-unchanged path/to/file.txt
+git commit -a -m "a commit comment"
+git update-index --no-assume-unchanged path/to/file.txt
+
+
 ###############
 # Jetty Start #
 ###############
@@ -723,3 +732,9 @@ pip install yolk
 
 #generate the requirements file#
 pip install -r requirements.txt
+
+###################################
+# Run command as a different user #
+###################################
+
+sudo su -c "command" -s /bin/sh username
