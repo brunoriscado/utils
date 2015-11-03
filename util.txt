@@ -738,3 +738,9 @@ pip install -r requirements.txt
 ###################################
 
 sudo su -c "command" -s /bin/sh username
+
+#####################################
+# base64-encoded 128-bit MD5 digest #
+#####################################
+
+echo -n foo | openssl dgst -md5 -binary | openssl enc -base64
