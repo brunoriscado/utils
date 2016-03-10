@@ -756,3 +756,8 @@ jar -cfm jars/advent.jar ${manifest and compiled class files}
 # run
 java -jar jars/advent.jar
 
+###############################
+# nohup with command and user #
+###############################
+
+nohup su -c "/usr/bin/java -jar /app/dmp-content-0.1-SNAPSHOT.jar" -s /bin/sh dmp > /app/logs/dmp-content.log &
