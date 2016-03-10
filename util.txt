@@ -744,3 +744,15 @@ sudo su -c "command" -s /bin/sh username
 #####################################
 
 echo -n foo | openssl dgst -md5 -binary | openssl enc -base64
+
+#####################################
+# Java manual compile, package, run #
+#####################################
+	
+# compile
+javac -d classes/advent ${source files}
+# package
+jar -cfm jars/advent.jar ${manifest and compiled class files}
+# run
+java -jar jars/advent.jar
+
