@@ -761,3 +761,9 @@ java -jar jars/advent.jar
 ###############################
 
 nohup su -c "/usr/bin/java -jar /app/dmp-content-0.1-SNAPSHOT.jar" -s /bin/sh dmp > /app/logs/dmp-content.log &
+
+##########################
+# find files over a 50mb #
+##########################
+
+find / -type f -size +50M -exec du -h {} \; | sort -n
